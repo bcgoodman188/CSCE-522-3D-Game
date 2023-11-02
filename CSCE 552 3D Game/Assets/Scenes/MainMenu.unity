@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -654,6 +654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextScene: CoreGameScreen
+  fastBack: 
 --- !u!1 &442032683
 GameObject:
   m_ObjectHideFlags: 0
@@ -699,6 +700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextScene: CoreGameScreen
+  fastBack: 
 --- !u!1 &453524480
 GameObject:
   m_ObjectHideFlags: 0
@@ -1014,6 +1016,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextScene: SettingsMenu
+  fastBack: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1287,6 +1290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextScene: AboutMenu
+  fastBack: 
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -2028,6 +2032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextScene: CoreGameScreen
+  fastBack: 
 --- !u!1 &1732798760
 GameObject:
   m_ObjectHideFlags: 0
@@ -2245,7 +2250,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1844716685}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 286466855}
+        m_TargetAssemblyTypeName: ManageScene, Assembly-CSharp
+        m_MethodName: quitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1844716685
 MonoBehaviour:
   m_ObjectHideFlags: 0
