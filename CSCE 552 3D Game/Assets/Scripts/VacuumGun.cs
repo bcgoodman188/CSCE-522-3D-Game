@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class VacuumGun : MonoBehaviour
 {
+    public Camera playerCamera;
     public float bulletSpeed = 10;
-    public GameObject bullet;
+    public GameObject redBulletPrefab;
+    public GameObject blueBulletPrefab;
+    public GameObject greenBulletPrefab;
     public Rigidbody rb;
     public Transform bulletSpawn;
     public int redBullets;
@@ -36,10 +39,13 @@ public class VacuumGun : MonoBehaviour
 
         //Fire active bullet
         if(Input.GetKeyDown(KeyCode.Mouse0)) {
-            GameObject clone;
-            clone = Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
-            rb.velocity = new Vector3(10 * Time.deltaTime, 0, 0);
-            decreaseBullet();
+            if(bulletList[activeBullet] > 0) {
+                Fire();
+                decreaseBullet();
+            }
+            else { 
+                Debug.Log("Out of ammo");
+            }
         }
 
         //Cycle bullets forwards
@@ -79,22 +85,53 @@ public class VacuumGun : MonoBehaviour
         }
     }
     void decreaseBullet() {
-        if(bulletList[activeBullet] > 0) {
-            tempValue = bulletList[activeBullet];
-            tempValue--;
-            if(activeBullet == 0) {
-                redBullets = tempValue;
-            }
-            else if(activeBullet == 1) {
-                greenBullets = tempValue;
-            }
-            else {
-                blueBullets = tempValue;
-            }
-            bulletList[activeBullet] = tempValue;
+        tempValue = bulletList[activeBullet];
+        tempValue--;
+        if(activeBullet == 0) {
+            redBullets = tempValue;
+        }
+        else if(activeBullet == 1) {
+            greenBullets = tempValue;
         }
         else {
-            Debug.Log("Out of ammo...");
+            blueBullets = tempValue;
+        }
+        bulletList[activeBullet] = tempValue;      
+    }
+    void Fire() {
+        Ray raycast = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
+
+        Vector3 target;
+        if (Physics.Raycast(raycast, out hit)) {
+            target = hit.point;
+        }
+        else {
+            target = raycast.GetPoint(75);
+        }
+
+        Vector3 distance = target - bulletSpawn.position;
+
+        if(activeBullet == 0) {
+            GameObject newRedBullet = Instantiate(redBulletPrefab, bulletSpawn.position, Quaternion.identity);
+            newRedBullet.transform.forward = distance.normalized;
+            //Force used to move bullet forward
+            newRedBullet.GetComponent<Rigidbody>().AddForce(distance.normalized * bulletSpeed, ForceMode.Impulse);
+            Destroy(newRedBullet, 4f);
+        }
+        else if(activeBullet == 1) {
+            GameObject newGreenBullet = Instantiate(greenBulletPrefab, bulletSpawn.position, Quaternion.identity);
+            newGreenBullet.transform.forward = distance.normalized;
+            //Force used to move bullet forward
+            newGreenBullet.GetComponent<Rigidbody>().AddForce(distance.normalized * bulletSpeed, ForceMode.Impulse);
+            Destroy(newGreenBullet, 4f);
+        }
+        else if(activeBullet == 2) {
+            GameObject newBlueBullet = Instantiate(blueBulletPrefab, bulletSpawn.position, Quaternion.identity);
+            newBlueBullet.transform.forward = distance.normalized;
+            //Force used to move bullet forward
+            newBlueBullet.GetComponent<Rigidbody>().AddForce(distance.normalized * bulletSpeed, ForceMode.Impulse);
+            Destroy(newBlueBullet, 4f);
         }
     }
 }
