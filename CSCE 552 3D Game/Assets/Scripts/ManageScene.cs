@@ -9,7 +9,7 @@ public class ManageScene : MonoBehaviour
     public string fastBack;
 
     void Start() {
-        Debug.Log(prevScene);
+        //Debug.Log(prevScene);
     }
 
     void Update() {
