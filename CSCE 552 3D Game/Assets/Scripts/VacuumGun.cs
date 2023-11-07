@@ -11,17 +11,20 @@ public class VacuumGun : MonoBehaviour
     public GameObject greenBulletPrefab;
     public Rigidbody rb;
     public Transform bulletSpawn;
-    public int redBullets;
-    public int greenBullets;
-    public int blueBullets;
+    public static int redBullets;
+    public static int greenBullets;
+    public static int blueBullets;
 
-    public int activeBullet = 0;
+    public static int activeBullet = 0;
     private int tempValue;
     List<int> bulletList = new List<int>();
 
     // Start is called before the first frame update
     void Start()
     {  
+        redBullets = 5;
+        greenBullets = 5;
+        blueBullets = 5;
         //Assignes all of the values for starting ammo 
         bulletList.Add(redBullets);
         bulletList.Add(greenBullets);
@@ -46,6 +49,10 @@ public class VacuumGun : MonoBehaviour
             else { 
                 Debug.Log("Out of ammo");
             }
+        }
+        //Absorbs Bullets
+        if(Input.GetKeyDown(KeyCode.Mouse1)) {
+            Absorb();
         }
 
         //Cycle bullets forwards
@@ -133,5 +140,21 @@ public class VacuumGun : MonoBehaviour
             newBlueBullet.GetComponent<Rigidbody>().AddForce(distance.normalized * bulletSpeed, ForceMode.Impulse);
             Destroy(newBlueBullet, 4f);
         }
+    }
+    void Absorb() {
+        Ray raycast = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
+
+        Vector3 target;
+        if (Physics.Raycast(raycast, out hit)) {
+            Debug.Log("HIT");
+            target = hit.point;
+        }
+        else {
+            target = raycast.GetPoint(75);
+            Debug.Log("MISS");
+        }
+
+        Vector3 distance = target - bulletSpawn.position;
     }
 }
