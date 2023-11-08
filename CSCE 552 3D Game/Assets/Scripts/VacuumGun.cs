@@ -6,6 +6,7 @@ public class VacuumGun : MonoBehaviour
 {
     public Camera playerCamera;
     public float bulletSpeed = 10;
+    public int pointsForAbsorb;
     public bool canFire = true;
     public GameObject redBulletPrefab;
     public GameObject blueBulletPrefab;
@@ -59,7 +60,7 @@ public class VacuumGun : MonoBehaviour
             canFire = false;
             Absorb();
         }
-        if(Input.GetKey(KeyCode.Mouse1)) {
+        if(Input.GetKeyUp(KeyCode.Mouse1)) {
             canFire = true;
         }
 
@@ -157,23 +158,26 @@ public class VacuumGun : MonoBehaviour
         if (Physics.Raycast(raycast, out hit)) {
             Debug.Log("HIT");
             target = hit.point;
-            if(hit.collider.CompareTag("RedBullet")) {
+            if(hit.collider.CompareTag("RedAmmo")) {
                 Debug.Log("Yup, it's a RED bullet");
                 Destroy(hit.collider.gameObject);
                 redBullets++;
                 //bulletList[0]++;
+                GameManager.score += pointsForAbsorb;
             }
-            else if(hit.collider.CompareTag("GreenBullet")) {
+            else if(hit.collider.CompareTag("GreenAmmo")) {
                 Debug.Log("Yup, it's a GREEN bullet");
                 Destroy(hit.collider.gameObject);
                 greenBullets++;
                 //bulletList[1]++;
+                GameManager.score += pointsForAbsorb;
             }
-            else if(hit.collider.CompareTag("BlueBullet")) {
+            else if(hit.collider.CompareTag("BlueAmmo")) {
                 Debug.Log("Yup, it's a BLUE bullet");
                 Destroy(hit.collider.gameObject);
                 blueBullets++;
                 //bulletList[2]++;
+                GameManager.score += pointsForAbsorb;
             }
         }
         else {

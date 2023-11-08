@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 766355076780551466}
   - component: {fileID: -146687422856914299}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104,8 +104,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.51756287
+  m_Center: {x: 0.0029144287, y: 0, z: 0}
 --- !u!114 &-146687422856914299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,5 +118,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 625f6e7d2cee644fe92174aaa55d7eab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointValue: 100
+  health: 6
+  lethalBullet: BlueBullet
   playerPos: {fileID: 0}
   speed: 8
+  bulletDrop: {fileID: 6890986316673452805, guid: ff6e1d77cc6ae4d468e393afecf8bcdb, type: 3}
+  bulletDrop2: {fileID: 4072143211394776443, guid: 5857b971415003a4fba5d7f343e9bff5, type: 3}
+  offset: {x: 0, y: 0, z: 0}

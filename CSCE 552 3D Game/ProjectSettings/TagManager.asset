@@ -7,6 +7,9 @@ TagManager:
   - GreenBullet
   - BlueBullet
   - RedBullet
+  - RedAmmo
+  - GreenAmmo
+  - BlueAmmo
   layers:
   - Default
   - TransparentFX
