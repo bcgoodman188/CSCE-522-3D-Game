@@ -6,6 +6,7 @@ public class VacuumGun : MonoBehaviour
 {
     public Camera playerCamera;
     public float bulletSpeed = 10;
+    public bool canFire = true;
     public GameObject redBulletPrefab;
     public GameObject blueBulletPrefab;
     public GameObject greenBulletPrefab;
@@ -39,9 +40,12 @@ public class VacuumGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bulletList[0] = redBullets;
+        bulletList[1] = greenBullets;
+        bulletList[2] = blueBullets;
 
         //Fire active bullet
-        if(Input.GetKeyDown(KeyCode.Mouse0)) {
+        if(Input.GetKeyDown(KeyCode.Mouse0) && canFire == true) {
             if(bulletList[activeBullet] > 0) {
                 Fire();
                 decreaseBullet();
@@ -51,8 +55,12 @@ public class VacuumGun : MonoBehaviour
             }
         }
         //Absorbs Bullets
-        if(Input.GetKeyDown(KeyCode.Mouse1)) {
+        if(Input.GetKey(KeyCode.Mouse1)) {
+            canFire = false;
             Absorb();
+        }
+        if(Input.GetKey(KeyCode.Mouse1)) {
+            canFire = true;
         }
 
         //Cycle bullets forwards
@@ -149,6 +157,24 @@ public class VacuumGun : MonoBehaviour
         if (Physics.Raycast(raycast, out hit)) {
             Debug.Log("HIT");
             target = hit.point;
+            if(hit.collider.CompareTag("RedBullet")) {
+                Debug.Log("Yup, it's a RED bullet");
+                Destroy(hit.collider.gameObject);
+                redBullets++;
+                //bulletList[0]++;
+            }
+            else if(hit.collider.CompareTag("GreenBullet")) {
+                Debug.Log("Yup, it's a GREEN bullet");
+                Destroy(hit.collider.gameObject);
+                greenBullets++;
+                //bulletList[1]++;
+            }
+            else if(hit.collider.CompareTag("BlueBullet")) {
+                Debug.Log("Yup, it's a BLUE bullet");
+                Destroy(hit.collider.gameObject);
+                blueBullets++;
+                //bulletList[2]++;
+            }
         }
         else {
             target = raycast.GetPoint(75);
