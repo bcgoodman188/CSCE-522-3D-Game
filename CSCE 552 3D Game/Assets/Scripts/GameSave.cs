@@ -3,7 +3,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 public static class GameSave
 {
-    public static void SavePlayer (PlayerMove player) 
+    public static void SavePlayer(PlayerMove player) 
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/player.txt";
@@ -13,6 +13,17 @@ public static class GameSave
 
         formatter.Serialize(stream, data);
         stream.Close();
+    }
+
+    public static void SaveGun(VacuumGun gun) {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string gunPath = Application.persistentDataPath + "/vacuumgun.txt";
+        FileStream gunStream = new FileStream(gunPath, FileMode.Create);
+
+        VacuumData gunData = new VacuumData(gun);
+
+        formatter.Serialize(gunStream, gunData);
+        gunStream.Close();
     }
 
     public static PlayerData LoadPlayer() {
@@ -28,6 +39,22 @@ public static class GameSave
         }
         else {
             Debug.Log("Save file not found in " + path);
+            return null;
+        }
+    }
+    public static VacuumData LoadGun() {
+        string gunPath = Application.persistentDataPath + "/vacuumgun.txt";
+        if(File.Exists(gunPath)) {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream gunStream = new FileStream(gunPath, FileMode.Open);
+
+            VacuumData gunData = formatter.Deserialize(gunStream) as VacuumData;
+            gunStream.Close();
+
+            return gunData;
+        }
+        else {
+            Debug.Log("Save file not found in " + gunPath);
             return null;
         }
     }

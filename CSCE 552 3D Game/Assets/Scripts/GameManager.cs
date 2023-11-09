@@ -5,6 +5,8 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject pauseMenu;
+    public bool gamePaused = false;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI waveText;
@@ -16,9 +18,32 @@ public class GameManager : MonoBehaviour
     public static int wave = 0;
     public static int health = 100;
     void Update() {
+        if(Input.GetKeyDown(KeyCode.Escape)) {
+            if(gamePaused == true) {
+                VacuumGun.canFire = true;
+                Resume();
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+            else {
+                VacuumGun.canFire = false;
+                Pause();
+                Cursor.lockState = CursorLockMode.None;
+            }
+
+        }
         scoreText.text = "Score: " + score.ToString();
         timerText.text = "Timer: " + timerMin.ToString() + ":" + timerSecOne.ToString() + "" + timerSecTwo.ToString();
         waveText.text = "Wave: " + wave.ToString();
         healthText.text = "Health: " + health.ToString();
+    }
+    public void Resume() {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+        gamePaused = false;
+    }
+    void Pause() {
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0f;
+        gamePaused = true;
     }
 }

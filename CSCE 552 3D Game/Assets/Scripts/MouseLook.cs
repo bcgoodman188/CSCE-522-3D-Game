@@ -18,9 +18,6 @@ public class MouseLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape)) {
-            Cursor.lockState = CursorLockMode.None;
-        }
         float mX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
         float mY = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
     

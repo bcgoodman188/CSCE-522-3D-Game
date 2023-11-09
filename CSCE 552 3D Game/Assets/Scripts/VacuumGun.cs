@@ -7,15 +7,18 @@ public class VacuumGun : MonoBehaviour
     public Camera playerCamera;
     public float bulletSpeed = 10;
     public int pointsForAbsorb;
-    public bool canFire = true;
+    public static bool canFire = true;
     public GameObject redBulletPrefab;
     public GameObject blueBulletPrefab;
     public GameObject greenBulletPrefab;
     public Rigidbody rb;
     public Transform bulletSpawn;
     public static int redBullets;
+    public int savedRed;
     public static int greenBullets;
+    public int savedGreen;
     public static int blueBullets;
+    public int savedBlue;
 
     public static int activeBullet = 0;
     private int tempValue;
@@ -27,6 +30,7 @@ public class VacuumGun : MonoBehaviour
         redBullets = 5;
         greenBullets = 5;
         blueBullets = 5;
+
         //Assignes all of the values for starting ammo 
         bulletList.Add(redBullets);
         bulletList.Add(greenBullets);
@@ -44,6 +48,11 @@ public class VacuumGun : MonoBehaviour
         bulletList[0] = redBullets;
         bulletList[1] = greenBullets;
         bulletList[2] = blueBullets;
+
+        //Saves amount of bullets in non-static int to be saved.
+        savedRed = bulletList[0];
+        savedBlue = bulletList[1];
+        savedGreen = bulletList[2];
 
         //Fire active bullet
         if(Input.GetKeyDown(KeyCode.Mouse0) && canFire == true) {
@@ -186,5 +195,15 @@ public class VacuumGun : MonoBehaviour
         }
 
         Vector3 distance = target - bulletSpawn.position;
+    }
+    public void SaveGun() {
+        GameSave.SaveGun(this);
+    }
+    public void LoadGun() {
+        VacuumData gunData = GameSave.LoadGun();
+
+        redBullets = gunData.bullets[0];
+        greenBullets = gunData.bullets[1];
+        blueBullets = gunData.bullets[2];
     }
 }

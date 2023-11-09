@@ -6,14 +6,14 @@ using UnityEngine;
 public class PlayerData
 {
     public int health;
-    public float[] position;
+    public float[] pos;
     public PlayerData(PlayerMove player) 
     {
         health = player.health;
 
-        position = new float[3];
-        position[0] = player.transform.position.x;
-        position[1] = player.transform.position.y;
-        position[2] = player.transform.position.z;
+        pos = new float[3];
+        pos[0] = player.transform.position.x;
+        pos[1] = player.transform.position.y;
+        pos[2] = player.transform.position.z;
     }
 }

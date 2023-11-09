@@ -20,7 +20,7 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         if(Input.GetKey(KeyCode.K)) {
-            Debug.Log("Save ran");
+            Debug.Log("Save Ran");
             SavePlayer();
         }
         if(Input.GetKey(KeyCode.L)) {
@@ -50,6 +50,7 @@ public class PlayerMove : MonoBehaviour
     }
     public void SavePlayer() {
         GameSave.SavePlayer(this);
+        Debug.Log(transform.position);
     }
     public void LoadPlayer() {
         PlayerData data = GameSave.LoadPlayer();
@@ -57,9 +58,13 @@ public class PlayerMove : MonoBehaviour
         health = data.health;
 
         Vector3 position;
-        position.x = data.position[0];
-        position.y = data.position[1];
-        position.z = data.position[2];
+        position.x = data.pos[0];
+        position.y = data.pos[1];
+        position.z = data.pos[2];
+
+        controller.enabled = false;
         transform.position = position;
+        controller.enabled = true;
+        Debug.Log(transform.position);
     }
 }
