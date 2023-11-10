@@ -20,9 +20,7 @@ public class GameManager : MonoBehaviour
     void Update() {
         if(Input.GetKeyDown(KeyCode.Escape)) {
             if(gamePaused == true) {
-                VacuumGun.canFire = true;
                 Resume();
-                Cursor.lockState = CursorLockMode.Locked;
             }
             else {
                 VacuumGun.canFire = false;
@@ -37,13 +35,21 @@ public class GameManager : MonoBehaviour
         healthText.text = "Health: " + health.ToString();
     }
     public void Resume() {
+        VacuumGun.canFire = true;
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
         gamePaused = false;
     }
     void Pause() {
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         gamePaused = true;
+    }
+    public void Quit() {
+        VacuumGun.canFire = true;
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+        gamePaused = false;
     }
 }

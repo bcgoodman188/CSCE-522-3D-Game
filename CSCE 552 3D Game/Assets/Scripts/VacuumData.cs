@@ -5,9 +5,11 @@ using UnityEngine;
 [System.Serializable]
 public class VacuumData
 {
+    public int active;
     public int[] bullets;
     public VacuumData(VacuumGun gun) 
     {
+        active = gun.saveActive;
         bullets = new int[3];
 
         bullets[0] = gun.savedRed;

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class VacuumGun : MonoBehaviour
 {
+    public static bool isLoaded = false;
     public Camera playerCamera;
     public float bulletSpeed = 10;
     public int pointsForAbsorb;
@@ -21,12 +22,15 @@ public class VacuumGun : MonoBehaviour
     public int savedBlue;
 
     public static int activeBullet = 0;
+    public int saveActive;
     private int tempValue;
     List<int> bulletList = new List<int>();
 
     // Start is called before the first frame update
     void Start()
     {  
+    if(isLoaded == false) {
+        //gunData = gameObject.GetComponent<>();
         redBullets = 5;
         greenBullets = 5;
         blueBullets = 5;
@@ -41,6 +45,14 @@ public class VacuumGun : MonoBehaviour
             Debug.Log(i + " is " + bulletList[i]);
         }
     }
+    else {
+        LoadGun();
+        bulletList.Add(redBullets);
+        bulletList.Add(greenBullets);
+        bulletList.Add(blueBullets);
+        isLoaded = false;
+    } 
+    }
 
     // Update is called once per frame
     void Update()
@@ -50,9 +62,10 @@ public class VacuumGun : MonoBehaviour
         bulletList[2] = blueBullets;
 
         //Saves amount of bullets in non-static int to be saved.
+        saveActive = activeBullet;
         savedRed = bulletList[0];
-        savedBlue = bulletList[1];
-        savedGreen = bulletList[2];
+        savedGreen = bulletList[1];
+        savedBlue = bulletList[2];
 
         //Fire active bullet
         if(Input.GetKeyDown(KeyCode.Mouse0) && canFire == true) {
@@ -201,6 +214,8 @@ public class VacuumGun : MonoBehaviour
     }
     public void LoadGun() {
         VacuumData gunData = GameSave.LoadGun();
+
+        activeBullet = gunData.active;
 
         redBullets = gunData.bullets[0];
         greenBullets = gunData.bullets[1];

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    public static bool isLoaded = false;
     public CharacterController controller;
     public Transform groundCheck;
     public LayerMask groundMask;
@@ -16,9 +17,15 @@ public class PlayerMove : MonoBehaviour
 
     Vector3 velocity;
     
-    // Update is called once per frame
+    void Start() {
+        if(isLoaded == true) {
+            LoadPlayer();
+            isLoaded = false;
+        }
+    }
     void Update()
     {
+        /*
         if(Input.GetKey(KeyCode.K)) {
             Debug.Log("Save Ran");
             SavePlayer();
@@ -27,6 +34,7 @@ public class PlayerMove : MonoBehaviour
             Debug.Log("Load Ran");
             LoadPlayer();
         }
+        */
         isGrounded = Physics.CheckSphere(groundCheck.position, distToGround, groundMask);
         
         if(isGrounded && velocity.y < 0) {

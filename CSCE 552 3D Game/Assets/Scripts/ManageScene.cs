@@ -4,12 +4,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class ManageScene : MonoBehaviour
 {
+    PlayerMove playerMove;
+    VacuumGun vacuumGun;
     public static int prevScene;
     public string nextScene;
     public string fastBack;
 
     void Start() {
         //Debug.Log(prevScene);
+        playerMove = gameObject.GetComponent<PlayerMove>();
+        vacuumGun = gameObject.GetComponent<VacuumGun>();
     }
 
     void Update() {
@@ -30,6 +34,11 @@ public class ManageScene : MonoBehaviour
             prevScene = SceneManager.GetActiveScene().buildIndex;
             SceneManager.LoadScene(nextScene);
         }
+    }
+    public void loadGame() {
+        SceneManager.LoadScene("CoreGameScreen");
+        VacuumGun.isLoaded = true;
+        PlayerMove.isLoaded = true;
     }
 
     public void quitGame() {
