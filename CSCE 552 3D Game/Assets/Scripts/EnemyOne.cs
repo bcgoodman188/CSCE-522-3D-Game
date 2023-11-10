@@ -27,21 +27,16 @@ public class EnemyOne : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if(health <= 0){
-            Destroy(gameObject);
             Instantiate(bulletDrop, gameObject.transform.position + offset, gameObject.transform.rotation);
             Instantiate(bulletDrop2, gameObject.transform.position, gameObject.transform.rotation);
             GameManager.score += pointValue;
         }
+        */
         if(playerPos == null) {
             return;
         }
-        transform.LookAt(playerPos);
-
-        float distance = Vector3.Distance(transform.position, playerPos.position);
-
-	if(distance > 1f)	
-		transform.position += transform.forward * speed * Time.deltaTime;
     }
 
     void OnCollisionEnter(Collision col) {
@@ -50,5 +45,11 @@ public class EnemyOne : MonoBehaviour
             Debug.Log("I ran");
             health = health - 3;
         }
+    }
+    public void Death(GameObject gameObject) {
+        Destroy(gameObject);
+        Instantiate(bulletDrop, gameObject.transform.position + offset, gameObject.transform.rotation);
+        Instantiate(bulletDrop2, gameObject.transform.position, gameObject.transform.rotation);
+        GameManager.score += pointValue;
     }
 }

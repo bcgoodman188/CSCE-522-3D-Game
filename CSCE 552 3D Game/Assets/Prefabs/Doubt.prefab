@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6995245141611181665}
   - component: {fileID: 4244214929305126859}
   - component: {fileID: 766355076780551466}
-  - component: {fileID: -146687422856914299}
+  - component: {fileID: 883281605053922522}
   m_Layer: 0
   m_Name: Doubt
   m_TagString: Untagged
@@ -106,7 +106,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.51756287
   m_Center: {x: 0.0029144287, y: 0, z: 0}
---- !u!114 &-146687422856914299
+--- !u!114 &883281605053922522
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,14 +115,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7356170145278915046}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 625f6e7d2cee644fe92174aaa55d7eab, type: 3}
+  m_Script: {fileID: 11500000, guid: ae40f9a18f79f4e8686d4cb8b4c70aac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pointValue: 100
   health: 6
-  lethalBullet: BlueBullet
+  lethalBullet: GreenBullet
   playerPos: {fileID: 0}
   speed: 8
-  bulletDrop: {fileID: 6890986316673452805, guid: ff6e1d77cc6ae4d468e393afecf8bcdb, type: 3}
-  bulletDrop2: {fileID: 4072143211394776443, guid: 5857b971415003a4fba5d7f343e9bff5, type: 3}
+  bulletDrop: {fileID: 1103726033595729724, guid: e092cff0501aad34b989dc8392760f7e, type: 3}
+  bulletDrop2: {fileID: 6890986316673452805, guid: ff6e1d77cc6ae4d468e393afecf8bcdb, type: 3}
   offset: {x: 0, y: 0, z: 0}
