@@ -39,7 +39,7 @@ public class EnemyOne : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision col) {
+    void OnTriggerEnter(Collider col) { 
         if(col.gameObject.tag == lethalBullet) {
             Destroy(col.gameObject);
             Debug.Log("I ran");

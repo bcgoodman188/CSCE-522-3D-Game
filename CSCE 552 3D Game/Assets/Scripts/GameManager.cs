@@ -7,17 +7,35 @@ public class GameManager : MonoBehaviour
 {
     public GameObject pauseMenu;
     public bool gamePaused = false;
+
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI waveText;
     public TextMeshProUGUI healthText;
-    public static int score = 0;
-    public static int timerMin = 2;
-    public static int timerSecOne = 0;
-    public static int timerSecTwo = 0;
-    public static int wave = 0;
+
     public static int health = 100;
+    public static int score = 0;
+    public float timerLeft;
+    public bool timerOn = false;
+    //public static int timerSecOne = 0;
+    //public static int timerSecTwo = 0;
+    public static int wave = 0;
+    
     void Update() {
+        if(Input.GetKeyDown(KeyCode.Tab) && timerOn == false) {
+            timerLeft = 80;
+            timerOn = true;
+        }
+        if(timerOn) {
+            if(timerLeft > 0){
+                timerLeft -= Time.deltaTime;
+                updateTime(timerLeft);
+            }
+            else {
+                timerLeft = 0f;
+                timerOn = false;
+            }
+        }
         if(Input.GetKeyDown(KeyCode.Escape)) {
             if(gamePaused == true) {
                 Resume();
@@ -30,7 +48,6 @@ public class GameManager : MonoBehaviour
 
         }
         scoreText.text = "Score: " + score.ToString();
-        timerText.text = "Timer: " + timerMin.ToString() + ":" + timerSecOne.ToString() + "" + timerSecTwo.ToString();
         waveText.text = "Wave: " + wave.ToString();
         healthText.text = "Health: " + health.ToString();
     }
@@ -51,5 +68,13 @@ public class GameManager : MonoBehaviour
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         gamePaused = false;
+    }
+    public void updateTime(float time) {
+        time += 1;
+
+        float min = Mathf.FloorToInt(time / 60);
+        float sec = Mathf.FloorToInt(time % 60);
+
+        timerText.text = string.Format("{0:00} : {1:00}", min, sec);
     }
 }

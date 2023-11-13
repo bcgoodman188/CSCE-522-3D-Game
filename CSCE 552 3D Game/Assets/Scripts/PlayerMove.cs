@@ -8,7 +8,6 @@ public class PlayerMove : MonoBehaviour
     public CharacterController controller;
     public Transform groundCheck;
     public LayerMask groundMask;
-    public int health = 100;
     public float distToGround = 0.3f;
     public float speed = 12f;
     public float gravity = -9.81f;
@@ -62,8 +61,6 @@ public class PlayerMove : MonoBehaviour
     }
     public void LoadPlayer() {
         PlayerData data = GameSave.LoadPlayer();
-
-        health = data.health;
 
         Vector3 position;
         position.x = data.pos[0];
