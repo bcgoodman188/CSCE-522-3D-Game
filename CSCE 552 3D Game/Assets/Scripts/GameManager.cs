@@ -56,7 +56,6 @@ public class GameManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Escape)) {
             if(gamePaused == true) {
                 Resume();
-                Cursor.lockState = CursorLockMode.Locked;
             }
             else {
                 VacuumGun.canFire = false;
