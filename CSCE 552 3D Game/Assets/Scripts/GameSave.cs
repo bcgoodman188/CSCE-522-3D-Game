@@ -26,6 +26,17 @@ public static class GameSave
         gunStream.Close();
     }
 
+    public static void SaveGameState(GameManager game) {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string gamePath = Application.persistentDataPath + "/gamestate.txt";
+        FileStream gameStream = new FileStream(gamePath, FileMode.Create);
+
+        GameData gameData = new GameData(game);
+
+        formatter.Serialize(gameStream, gameData);
+        gameStream.Close();
+    }
+
     public static PlayerData LoadPlayer() {
         string path = Application.persistentDataPath + "/player.txt";
         if(File.Exists(path)) {
@@ -55,6 +66,22 @@ public static class GameSave
         }
         else {
             Debug.Log("Save file not found in " + gunPath);
+            return null;
+        }
+    }
+    public static GameData LoadGameState() {
+        string gamePath = Application.persistentDataPath + "/gamestate.txt";
+        if(File.Exists(gamePath)) {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream gameStream = new FileStream(gamePath, FileMode.Open);
+
+            GameData gameData = formatter.Deserialize(gameStream) as GameData;
+            gameStream.Close();
+
+            return gameData;
+        }
+        else {
+            Debug.Log("Save file for game data not found in" + gamePath);
             return null;
         }
     }

@@ -57,7 +57,7 @@ public class PlayerMove : MonoBehaviour
     }
     public void SavePlayer() {
         GameSave.SavePlayer(this);
-        Debug.Log(transform.position);
+        //Debug.Log(transform.position);
     }
     public void LoadPlayer() {
         PlayerData data = GameSave.LoadPlayer();

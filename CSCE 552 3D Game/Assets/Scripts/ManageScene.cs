@@ -39,6 +39,7 @@ public class ManageScene : MonoBehaviour
         SceneManager.LoadScene("CoreGameScreen");
         VacuumGun.isLoaded = true;
         PlayerMove.isLoaded = true;
+        GameManager.isLoaded = true;
     }
 
     public void quitGame() {

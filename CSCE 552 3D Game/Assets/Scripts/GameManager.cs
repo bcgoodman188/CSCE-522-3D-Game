@@ -5,7 +5,9 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    public static bool isLoaded = false;
     public GameObject pauseMenu;
+    public GameObject saveButton;
     public bool gamePaused = false;
 
     public TextMeshProUGUI scoreText;
@@ -17,14 +19,25 @@ public class GameManager : MonoBehaviour
     public static int score = 0;
     public float timerLeft;
     public bool timerOn = false;
+    public int healthSave;
+    public int scoreSave;
+    public int waveSave;
     //public static int timerSecOne = 0;
     //public static int timerSecTwo = 0;
     public static int wave = 0;
-    
+    void Start() {
+        if(isLoaded == true) {
+            LoadGameState();
+            isLoaded = false;
+        }
+    }
+
     void Update() {
         if(Input.GetKeyDown(KeyCode.Tab) && timerOn == false) {
-            timerLeft = 80;
+            wave++;
+            timerLeft = 20;
             timerOn = true;
+            saveButton.SetActive(false);
         }
         if(timerOn) {
             if(timerLeft > 0){
@@ -32,13 +45,18 @@ public class GameManager : MonoBehaviour
                 updateTime(timerLeft);
             }
             else {
+                healthSave = health;
+                scoreSave = score;
+                waveSave = wave;
                 timerLeft = 0f;
                 timerOn = false;
+                saveButton.SetActive(true);
             }
         }
         if(Input.GetKeyDown(KeyCode.Escape)) {
             if(gamePaused == true) {
                 Resume();
+                Cursor.lockState = CursorLockMode.Locked;
             }
             else {
                 VacuumGun.canFire = false;
@@ -75,6 +93,16 @@ public class GameManager : MonoBehaviour
         float min = Mathf.FloorToInt(time / 60);
         float sec = Mathf.FloorToInt(time % 60);
 
-        timerText.text = string.Format("{0:00} : {1:00}", min, sec);
+        timerText.text = string.Format(" Timer: {0:00}:{1:00}", min, sec);
+    }
+    public void SaveGameState() {
+        GameSave.SaveGameState(this);
+    }
+    public void LoadGameState() {
+        GameData gameData = GameSave.LoadGameState();
+
+        health = gameData.health;
+        wave = gameData.wave;
+        score = gameData.score;
     }
 }
