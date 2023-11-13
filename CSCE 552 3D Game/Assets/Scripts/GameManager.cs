@@ -5,6 +5,7 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    public List<GameObject> spawners = new List<GameObject>();
     public static bool isLoaded = false;
     public GameObject pauseMenu;
     public GameObject saveButton;
@@ -37,6 +38,7 @@ public class GameManager : MonoBehaviour
             wave++;
             timerLeft = 20;
             timerOn = true;
+            showSpawners();
             saveButton.SetActive(false);
         }
         if(timerOn) {
@@ -50,6 +52,7 @@ public class GameManager : MonoBehaviour
                 waveSave = wave;
                 timerLeft = 0f;
                 timerOn = false;
+                hideSpawners();
                 saveButton.SetActive(true);
             }
         }
@@ -103,5 +106,15 @@ public class GameManager : MonoBehaviour
         health = gameData.health;
         wave = gameData.wave;
         score = gameData.score;
+    }
+    void showSpawners() {
+        for(int i = 0; i < spawners.Count; i++) {
+            spawners[i].SetActive(true);
+        }
+    }
+    void hideSpawners() {
+        for(int i = 0; i < spawners.Count; i++) {
+            spawners[i].SetActive(false);
+        }
     }
 }
