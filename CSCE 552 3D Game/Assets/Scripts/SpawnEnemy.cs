@@ -13,7 +13,11 @@ public class SpawnEnemy : MonoBehaviour
     }
     // Update is called once per frame
     void Update(){
-        
+        if(GameManager.timerOn == false){
+            Debug.Log("ran");
+            CancelInvoke();
+        }
+        Debug.Log(GameManager.timerOn);
     }
     void spawn() {
         int rand = Random.Range(1,4);

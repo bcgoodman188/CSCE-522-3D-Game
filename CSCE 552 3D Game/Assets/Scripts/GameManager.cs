@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     public static int health = 100;
     public static int score = 0;
     public float timerLeft;
-    public bool timerOn = false;
+    public static bool timerOn = false;
     public int healthSave;
     public int scoreSave;
     public int waveSave;
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
                 waveSave = wave;
                 timerLeft = 0f;
                 timerOn = false;
-                hideSpawners();
+                //hideSpawners();
                 saveButton.SetActive(true);
             }
         }
@@ -114,7 +114,7 @@ public class GameManager : MonoBehaviour
     }
     void hideSpawners() {
         for(int i = 0; i < spawners.Count; i++) {
-            spawners[i].SetActive(false);
+            //spawners[i].SetActive(false);
         }
     }
 }
