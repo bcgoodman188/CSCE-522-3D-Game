@@ -12,8 +12,9 @@ public class VacuumGun : MonoBehaviour
     public GameObject redBulletPrefab;
     public GameObject blueBulletPrefab;
     public GameObject greenBulletPrefab;
-    public Rigidbody rb;
+    //public Rigidbody rb;
     public Transform bulletSpawn;
+    public Animator anim;
     public static int redBullets;
     public int savedRed;
     public static int greenBullets;
@@ -69,6 +70,7 @@ public class VacuumGun : MonoBehaviour
 
         //Fire active bullet
         if(Input.GetKeyDown(KeyCode.Mouse0) && canFire == true) {
+            anim.SetTrigger("Fire");
             if(bulletList[activeBullet] > 0) {
                 Fire();
                 decreaseBullet();
@@ -149,7 +151,6 @@ public class VacuumGun : MonoBehaviour
         }
 
         Vector3 distance = target - bulletSpawn.position;
-
         if(activeBullet == 0) {
             GameObject newRedBullet = Instantiate(redBulletPrefab, bulletSpawn.position, Quaternion.identity);
             newRedBullet.transform.forward = distance.normalized;
