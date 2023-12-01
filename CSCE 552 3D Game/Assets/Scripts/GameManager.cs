@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,27 +18,39 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI waveText;
     public TextMeshProUGUI healthText;
 
-    public static int health = 100;
-    public static int score = 0;
+    public static int health; //= 100;
+    public static int score; //= 0;
     public float timerLeft;
     public static bool timerOn = false;
     public int healthSave;
     public int scoreSave;
     public int waveSave;
+    public int winGame;
     //public static int timerSecOne = 0;
     //public static int timerSecTwo = 0;
-    public static int wave = 0;
+    public static int wave; //= 0;
     void Start() {
         spawnEnemy = FindObjectOfType<SpawnEnemy>();
         if(isLoaded == true) {
             LoadGameState();
             isLoaded = false;
         }
+        else {
+            wave = 0;
+            health = 100;
+            score = 0;
+        }
     }
 
     void Update() {
         if(Input.GetKeyDown(KeyCode.Tab) && timerOn == false) {
             wave++;
+            //Check if game is over
+            if(wave == winGame) {
+                timerLeft = 0;
+                SceneManager.LoadScene(5);
+                Cursor.lockState = CursorLockMode.None;
+            }
             timerLeft = 20;
             timerOn = true;
             showSpawners();

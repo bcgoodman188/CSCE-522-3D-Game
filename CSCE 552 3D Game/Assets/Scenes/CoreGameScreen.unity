@@ -634,7 +634,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 485.7747, y: -2.4456177, z: -67.911255}
-  m_LocalScale: {x: 100, y: 1, z: 50}
+  m_LocalScale: {x: 100, y: 1, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -703,7 +703,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4869197301896462208, guid: 16f20cb70c92f4047a670af0fb426c76, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -91.2
+      value: -114.4
       objectReference: {fileID: 0}
     - target: {fileID: 4869197301896462208, guid: 16f20cb70c92f4047a670af0fb426c76, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1779,7 +1779,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4869197301896462208, guid: 16f20cb70c92f4047a670af0fb426c76, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -91.9
+      value: -110.9
       objectReference: {fileID: 0}
     - target: {fileID: 4869197301896462208, guid: 16f20cb70c92f4047a670af0fb426c76, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3819,7 +3819,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4869197301896462208, guid: 16f20cb70c92f4047a670af0fb426c76, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -56.1
+      value: -24.4
       objectReference: {fileID: 0}
     - target: {fileID: 4869197301896462208, guid: 16f20cb70c92f4047a670af0fb426c76, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4175,6 +4175,7 @@ MonoBehaviour:
   healthSave: 0
   scoreSave: 0
   waveSave: 0
+  winGame: 2
 --- !u!4 &1772099384
 Transform:
   m_ObjectHideFlags: 0
@@ -4347,7 +4348,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 947607996}
+      - m_Target: {fileID: 2041743737}
         m_TargetAssemblyTypeName: VacuumGun, Assembly-CSharp
         m_MethodName: SaveGun
         m_Mode: 1
@@ -4899,7 +4900,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4869197301896462208, guid: 16f20cb70c92f4047a670af0fb426c76, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -56.1
+      value: -22.1
       objectReference: {fileID: 0}
     - target: {fileID: 4869197301896462208, guid: 16f20cb70c92f4047a670af0fb426c76, type: 3}
       propertyPath: m_LocalRotation.w
