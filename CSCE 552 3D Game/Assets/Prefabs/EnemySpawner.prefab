@@ -118,6 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 706189e5579bb0a40b78ee773dbd1318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  redEnemy: {fileID: 7356170145278915046, guid: c8a6ac8f8f563430f8953364f4b3031a, type: 3}
+  redEnemy: {fileID: 2936017937893369781, guid: 3bfb1d40649d88e49a70b17a4e4e7805, type: 3}
   greenEnemy: {fileID: 7356170145278915046, guid: 91f4cd4c14505412ca469552144e5b88, type: 3}
   blueEnemy: {fileID: 7356170145278915046, guid: b99527888ebb448f696ae02882008fc7, type: 3}

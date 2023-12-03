@@ -6,6 +6,8 @@ public class AngerEnemy : EnemyOne
 {
     public float attackTimer;
     void Update() {
+        Vector3 myLook = new Vector3(playerPos.position.x, gameObject.transform.position.y, playerPos.position.z);
+        this.gameObject.transform.LookAt(myLook);
         attackTimer += Time.deltaTime;
 
         transform.LookAt(playerPos);

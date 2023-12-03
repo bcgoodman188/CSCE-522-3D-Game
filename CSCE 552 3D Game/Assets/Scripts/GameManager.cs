@@ -115,7 +115,14 @@ public class GameManager : MonoBehaviour
         timerText.text = string.Format(" Timer: {0:00}:{1:00}", min, sec);
     }
     public void SaveGameState() {
+        healthSave = health;
+        waveSave = wave;
+        scoreSave = score;
         GameSave.SaveGameState(this);
+        
+        Debug.Log("health is: " + health);
+        Debug.Log("wave is: " + wave);
+        Debug.Log("score is: " + score);
     }
     public void LoadGameState() {
         GameData gameData = GameSave.LoadGameState();
