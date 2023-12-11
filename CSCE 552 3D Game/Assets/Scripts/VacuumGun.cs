@@ -32,9 +32,9 @@ public class VacuumGun : MonoBehaviour
     {  
     if(isLoaded == false) {
         //gunData = gameObject.GetComponent<>();
-        redBullets = 5;
-        greenBullets = 5;
-        blueBullets = 5;
+        redBullets = 7;
+        greenBullets = 7;
+        blueBullets = 7;
 
         //Assignes all of the values for starting ammo 
         bulletList.Add(redBullets);

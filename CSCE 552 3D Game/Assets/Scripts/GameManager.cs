@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public static bool isLoaded = false;
     public GameObject pauseMenu;
     public GameObject saveButton;
+    public GameObject ammoDropCrate;
+    public Transform ammoDropSpawnPoint;
     public bool gamePaused = false;
 
     public TextMeshProUGUI scoreText;
@@ -71,6 +73,7 @@ public class GameManager : MonoBehaviour
                 //hideSpawners();
                 saveButton.SetActive(true);
                 //hideSpawners();
+                Instantiate(ammoDropCrate, ammoDropSpawnPoint.position, ammoDropSpawnPoint.rotation);
             }
         }
         if(Input.GetKeyDown(KeyCode.Escape)) {
@@ -87,6 +90,11 @@ public class GameManager : MonoBehaviour
         scoreText.text = "Score: " + score.ToString();
         waveText.text = "Wave: " + wave.ToString();
         healthText.text = "Health: " + health.ToString();
+
+        if(health <= 0) {
+            Cursor.lockState = CursorLockMode.None;
+            SceneManager.LoadScene(6);
+        }
     }
     public void Resume() {
         VacuumGun.canFire = true;
