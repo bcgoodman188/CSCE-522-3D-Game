@@ -4,13 +4,24 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
+    public Transform playerPos;
     public Rigidbody bulletRb;
+    public AudioSource takeDamage;
     public float bulletSpeed;
+    Vector3 direction;
     
+    void Start() {
+        if(playerPos == null) {
+            if(GameObject.FindWithTag("Player") != null) {
+                playerPos = GameObject.FindWithTag ("Player").GetComponent<Transform>();
+            }
+        }
+        direction = playerPos.transform.position - this.transform.position;
+    }
     // Update is called once per frame
     void Update()
     {
-        bulletRb.velocity = transform.forward * bulletSpeed;
+        bulletRb.velocity = direction.normalized * bulletSpeed;//transform.forward * bulletSpeed;
         Destroy(gameObject, 2f);
     }
 
@@ -18,7 +29,8 @@ public class EnemyBullet : MonoBehaviour
         if(col.gameObject.CompareTag("Player")) {
             //PlayerMove pm = gameObject.GetComponent<PlayerMove>();
             GameManager.health -= 10;
-            Destroy(gameObject);
+            takeDamage.Play();
+            Destroy(gameObject,0.2f);
         }
     }
 }

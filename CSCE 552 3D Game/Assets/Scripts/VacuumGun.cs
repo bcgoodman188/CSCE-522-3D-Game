@@ -15,6 +15,8 @@ public class VacuumGun : MonoBehaviour
     //public Rigidbody rb;
     public Transform bulletSpawn;
     public Animator anim;
+    public AudioSource fireGun;
+    public AudioSource absorbBullets;
     public static int redBullets;
     public int savedRed;
     public static int greenBullets;
@@ -32,9 +34,9 @@ public class VacuumGun : MonoBehaviour
     {  
     if(isLoaded == false) {
         //gunData = gameObject.GetComponent<>();
-        redBullets = 7;
-        greenBullets = 7;
-        blueBullets = 7;
+        redBullets = 8;
+        greenBullets = 8;
+        blueBullets = 8;
 
         //Assignes all of the values for starting ammo 
         bulletList.Add(redBullets);
@@ -84,7 +86,11 @@ public class VacuumGun : MonoBehaviour
             canFire = false;
             Absorb();
         }
+        if(Input.GetKeyDown(KeyCode.Mouse1)) {
+            absorbBullets.Play();
+        }
         if(Input.GetKeyUp(KeyCode.Mouse1)) {
+            absorbBullets.Stop();
             canFire = true;
         }
 
@@ -139,6 +145,7 @@ public class VacuumGun : MonoBehaviour
         bulletList[activeBullet] = tempValue;      
     }
     void Fire() {
+        fireGun.Play();
         Ray raycast = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
 

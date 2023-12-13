@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,7 +19,11 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI waveText;
-    public TextMeshProUGUI healthText;
+    //public TextMeshProUGUI healthText;
+
+    public Slider slider;
+
+    public AudioSource nextWaveSound;
 
     public static int health; //= 100;
     public static int score; //= 0;
@@ -32,6 +37,7 @@ public class GameManager : MonoBehaviour
     //public static int timerSecTwo = 0;
     public static int wave; //= 0;
     void Start() {
+        slider.value = health;
         spawnEnemy = FindObjectOfType<SpawnEnemy>();
         if(isLoaded == true) {
             LoadGameState();
@@ -45,7 +51,11 @@ public class GameManager : MonoBehaviour
     }
 
     void Update() {
+        if(score > HighScoreSave.highScore) {
+            HighScoreSave.highScore = score;
+        }
         if(Input.GetKeyDown(KeyCode.Tab) && timerOn == false) {
+            nextWaveSound.Play();
             wave++;
             //Check if game is over
             if(wave == winGame) {
@@ -87,9 +97,10 @@ public class GameManager : MonoBehaviour
             }
 
         }
+        slider.value = health;
         scoreText.text = "Score: " + score.ToString();
         waveText.text = "Wave: " + wave.ToString();
-        healthText.text = "Health: " + health.ToString();
+        //healthText.text = "Health: " + health.ToString();
 
         if(health <= 0) {
             Cursor.lockState = CursorLockMode.None;

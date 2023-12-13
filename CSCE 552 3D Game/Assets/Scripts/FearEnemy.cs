@@ -7,6 +7,7 @@ public class FearEnemy : EnemyOne
     Animator animator;
     public Transform bulletSpawn;
     public GameObject bullet;
+    public AudioSource attackSound;
     private float timer;
 
     void Update() {
@@ -24,6 +25,7 @@ public class FearEnemy : EnemyOne
             animator.SetBool("inRange", true);
             if(timer >= 2.0f){
                 GameObject clone = Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
+                attackSound.Play();
                 timer = 0f;
             }
             //transform.position += transform.forward * -1 * speed * Time.deltaTime;

@@ -6,6 +6,7 @@ public class DoubtEnemy : EnemyOne
 {
     public Transform bulletSpawn;
     public GameObject bullet;
+    public AudioSource takeDamage;
     public float doubtAttackTimer;
     public float doubtRangeTimer;
     void Update() {
@@ -17,15 +18,17 @@ public class DoubtEnemy : EnemyOne
         if(distance > 5f) {
             transform.position += transform.forward * speed * Time.deltaTime;
         }
-        if(distance <= 10f) {
+        if(distance <= 15f) {
             if(doubtRangeTimer >= 3f){
                 GameObject clone = Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
+                takeDamage.Play();
                 doubtRangeTimer = 0f;
             }
         }
         if(distance <= 5f) {
             if(doubtAttackTimer >= 1f){
                 GameManager.health -= 10;
+                takeDamage.Play();
                 doubtAttackTimer = 0f;
             }
         }

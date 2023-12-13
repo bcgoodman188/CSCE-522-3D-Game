@@ -5,6 +5,7 @@ using UnityEngine;
 public class AngerEnemy : EnemyOne
 {
     Animator animator;
+    public AudioSource takeDamage;
     public float attackTimer;
 
     void Update() {
@@ -25,6 +26,7 @@ public class AngerEnemy : EnemyOne
             if(attackTimer >= 1.5f) {
                 animator.SetBool("inRange", true);
                 GameManager.health -= 10;
+                takeDamage.Play();
                 attackTimer = 0f;
             }
         }

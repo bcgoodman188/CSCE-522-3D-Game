@@ -34,6 +34,12 @@ public class PlayerMove : MonoBehaviour
             LoadPlayer();
         }
         */
+        if(Input.GetKeyDown(KeyCode.LeftShift)) {
+            speed = speed * 1.5f;
+        }
+        if(Input.GetKeyUp(KeyCode.LeftShift)) {
+            speed = speed / 1.5f;
+        }
         isGrounded = Physics.CheckSphere(groundCheck.position, distToGround, groundMask);
         
         if(isGrounded && velocity.y < 0) {
