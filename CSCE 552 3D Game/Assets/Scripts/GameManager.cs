@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
             //Check if game is over
             if(wave == winGame) {
                 score = score + 5000;
+                HighScoreSave.highScore = score;
                 timerLeft = 0;
                 SceneManager.LoadScene(5);
                 Cursor.lockState = CursorLockMode.None;
