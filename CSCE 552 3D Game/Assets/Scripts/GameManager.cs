@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     public static int health; //= 100;
     public static int score; //= 0;
+    public static float scoreDecay = 0;
     public float timerLeft;
     public static bool timerOn = false;
     public int healthSave;
@@ -51,6 +52,11 @@ public class GameManager : MonoBehaviour
     }
 
     void Update() {
+        scoreDecay += Time.deltaTime;
+        if(timerOn == false && scoreDecay >= 5f) {
+            scoreDecay = 0f;
+            score -= 10;
+        }
         if(score > HighScoreSave.highScore) {
             HighScoreSave.highScore = score;
         }
