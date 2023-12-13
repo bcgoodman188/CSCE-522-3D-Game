@@ -1114,8 +1114,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.06}
-  m_SizeDelta: {x: 712.1358, y: 296.5289}
+  m_AnchoredPosition: {x: 0, y: -12.63}
+  m_SizeDelta: {x: 712.1358, y: 321.909}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2035995598
 MonoBehaviour:
@@ -1138,17 +1138,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Welcome to Abstract, a fast paced 3D FPS about conserving ammuniton and
-    keeping on your toes.\n\n\t- To move your character use the WASD keys\n\t- You
-    can sprint by holding down left shift\n\t- To jump press Spacebar\n\t- You can
-    cycle between different color bullets by pressing the Q or E keys on your\n\t 
-    keyboard and use the LMB to fire\n\t- Enemies will only take damage from bullets
-    that are the same color as them\n\t- Enemies will drop ammuntion when they are
-    defeated, pick it up by holding down the \n\t  RMB with your crosshair pointed
-    at the ammunition\n\t- To start the next wave, press the Tab key when the timer
-    is at 00:00\n\t- At the end of each round a brown crate will spawn in the center
-    of the arena  \n\t  bullets can't destroy it but you can punch it open by pressing
-    F\n\t  (Note: Punching does not damage enemies) \n\t- If your health reaches
-    0, you will have to start over on wave one\n\t- Get past wave 20 to win!"
+    keeping on your toes.\n\t- Press the ESC key at anytime to pause the game \n\t 
+    (Note: The save button will only appear when the timer is 00:00)\n\t- To move
+    your character use the WASD keys\n\t- You can sprint by holding down left shift\n\t-
+    To jump press Spacebar\n\t- You can cycle between different color bullets by
+    pressing the Q or E keys on your\n\t  keyboard and use the LMB to fire\n\t- Enemies
+    will only take damage from bullets that are the same color as them\n\t- Enemies
+    will drop ammuntion when they are defeated, pick it up by holding down the \n\t 
+    RMB with your crosshair pointed at the ammunition\n\t- To start the next wave,
+    press the Tab key when the timer is at 00:00\n\t- At the end of each round a
+    brown crate will spawn in the center of the arena  \n\t  bullets can't destroy
+    it but you can punch it open by pressing F\n\t  (Note: Punching does not damage
+    enemies) \n\t- If your health reaches 0, you will have to start over on wave
+    one\n\t- Get past wave 20 to win!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

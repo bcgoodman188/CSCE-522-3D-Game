@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
 
     void Update() {
         scoreDecay += Time.deltaTime;
-        if(timerOn == false && scoreDecay >= 5f) {
+        if(timerOn == false && scoreDecay >= 5f && score > 0) {
             scoreDecay = 0f;
             score -= 10;
         }
@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
             wave++;
             //Check if game is over
             if(wave == winGame) {
+                score = score + 5000;
                 timerLeft = 0;
                 SceneManager.LoadScene(5);
                 Cursor.lockState = CursorLockMode.None;
